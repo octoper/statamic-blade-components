@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Octoper\BladeComponents\Tags;
 
 use Illuminate\Container\Container;
@@ -13,16 +15,15 @@ use Statamic\Tags\Tags;
 
 class BladeComponent extends Tags
 {
-    protected static $handle = 'component';
+    protected static $handle = 'x';
 
-    public function wildcard($expression): string
+    public function wildcard(string $expression): string
     {
-        if (empty($this->componentClass($expression)))
-        {
+        if (empty($this->componentClass($expression))) {
             return "";
         }
 
-        $generated = Blade::compileString(
+        $compiledBladeView = Blade::compileString(
             <<<EOT
             <x-{$expression} {$this->createAttributes($this->params->toArray())}>{$this->content}</x-{$expression}>
             EOT
@@ -30,60 +31,18 @@ class BladeComponent extends Tags
 
         $factory = Container::getInstance()->make('view');
 
-        return view($this->createViewFromString($factory, $generated))->render();
-    }
-
-    protected function createAttributes(array $attributes): string
-    {
-        return (new ComponentAttributeBag($attributes))->toHtml();
-    }
-
-    protected function createViewFromString($factory, $contents): string
-    {
-        $factory->addNamespace(
-            '__components',
-            $directory = Container::getInstance()['config']->get('view.compiled')
-        );
-
-        if (! file_exists($viewFile = $directory.'/'.sha1($contents).'.php')) {
-            if (! is_dir($directory)) {
-                mkdir($directory, 0755, true);
-            }
-
-            file_put_contents($viewFile, $contents);
+        try {
+            return view($this->createViewFromString($factory, $compiledBladeView))->render();
+        } catch (\Throwable $e) {
+            return "";
         }
-
-        return '__components::'.basename($viewFile, '.php');
-    }
-
-    /**
-     * Guess the view name for the given component.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function guessViewName($name): string
-    {
-        $prefix = 'components.';
-
-        $delimiter = ViewFinderInterface::HINT_PATH_DELIMITER;
-
-        if (Str::contains($name, $delimiter)) {
-            return Str::replaceFirst($delimiter, $delimiter.$prefix, $name);
-        }
-
-        return $prefix.$name;
     }
 
     /**
      * Get the component class for a given component alias.
      *
-     * @param  string  $component
-     * @return string
-     *
-     * @throws \InvalidArgumentException
      */
-    protected function componentClass(string $component)
+    protected function componentClass(string $component): string
     {
         $viewFactory = Container::getInstance()->make(Factory::class);
 
@@ -95,16 +54,14 @@ class BladeComponent extends Tags
             return $view;
         }
 
-        return;
+        return "";
     }
 
     /**
      * Guess the class name for the given component.
      *
-     * @param  string  $component
-     * @return string
      */
-    protected function guessClassName(string $component)
+    protected function guessClassName(string $component): string
     {
         $namespace = Container::getInstance()
             ->make(Application::class)
@@ -114,7 +71,52 @@ class BladeComponent extends Tags
             return ucfirst(Str::camel($componentPiece));
         }, explode('.', $component));
 
-        return $namespace.'View\\Components\\'.implode('\\', $componentPieces);
+        return $namespace . 'View\\Components\\' . implode('\\', $componentPieces);
+    }
+
+    /**
+     * Guess the view name for the given component.
+     */
+    protected function guessViewName(string $name): string
+    {
+        $prefix = 'components.';
+
+        $delimiter = ViewFinderInterface::HINT_PATH_DELIMITER;
+
+        if (Str::contains($name, $delimiter)) {
+            return Str::replaceFirst($delimiter, $delimiter . $prefix, $name);
+        }
+
+        return $prefix . $name;
+    }
+
+    /**
+     * Creates attributes tags.
+     */
+    protected function createAttributes(array $attributes): string
+    {
+        return (new ComponentAttributeBag($attributes))->toHtml();
+    }
+
+    /**
+     * Created a view based on a string
+     */
+    protected function createViewFromString(Factory $factory, string $contents): string
+    {
+        $factory->addNamespace(
+            '__components',
+            $directory = Container::getInstance()['config']->get('view.compiled')
+        );
+
+        if (!file_exists($viewFile = $directory . '/' . sha1($contents) . '.php')) {
+            if (!is_dir($directory)) {
+                mkdir($directory, 0755, true);
+            }
+
+            file_put_contents($viewFile, $contents);
+        }
+
+        return '__components::' . basename($viewFile, '.php');
     }
 
 }
