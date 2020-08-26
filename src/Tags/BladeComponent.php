@@ -15,7 +15,9 @@ use Statamic\Tags\Tags;
 
 class BladeComponent extends Tags
 {
-    protected static $handle = 'x';
+    protected static $handle = 'component';
+
+    protected static $aliases = ['x'];
 
     public function wildcard(string $expression): string
     {
