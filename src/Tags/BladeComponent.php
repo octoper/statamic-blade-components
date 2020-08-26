@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\ViewFinderInterface;
-use InvalidArgumentException;
 use Statamic\Tags\Tags;
 
 class BladeComponent extends Tags
@@ -38,7 +37,6 @@ class BladeComponent extends Tags
     {
         return (new ComponentAttributeBag($attributes))->toHtml();
     }
-
 
     protected function createViewFromString($factory, $contents): string
     {
