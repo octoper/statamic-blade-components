@@ -22,7 +22,7 @@ class BladeComponent extends Tags
     public function wildcard(string $expression): string
     {
         if (empty($this->componentClass($expression))) {
-            return "";
+            return '';
         }
 
         $compiledBladeView = Blade::compileString(
@@ -36,13 +36,12 @@ class BladeComponent extends Tags
         try {
             return view($this->createViewFromString($factory, $compiledBladeView))->render();
         } catch (\Throwable $e) {
-            return "";
+            return '';
         }
     }
 
     /**
      * Get the component class for a given component alias.
-     *
      */
     protected function componentClass(string $component): string
     {
@@ -56,12 +55,11 @@ class BladeComponent extends Tags
             return $view;
         }
 
-        return "";
+        return '';
     }
 
     /**
      * Guess the class name for the given component.
-     *
      */
     protected function guessClassName(string $component): string
     {
@@ -73,7 +71,7 @@ class BladeComponent extends Tags
             return ucfirst(Str::camel($componentPiece));
         }, explode('.', $component));
 
-        return $namespace . 'View\\Components\\' . implode('\\', $componentPieces);
+        return $namespace.'View\\Components\\'.implode('\\', $componentPieces);
     }
 
     /**
@@ -86,10 +84,10 @@ class BladeComponent extends Tags
         $delimiter = ViewFinderInterface::HINT_PATH_DELIMITER;
 
         if (Str::contains($name, $delimiter)) {
-            return Str::replaceFirst($delimiter, $delimiter . $prefix, $name);
+            return Str::replaceFirst($delimiter, $delimiter.$prefix, $name);
         }
 
-        return $prefix . $name;
+        return $prefix.$name;
     }
 
     /**
@@ -101,7 +99,7 @@ class BladeComponent extends Tags
     }
 
     /**
-     * Created a view based on a string
+     * Created a view based on a string.
      */
     protected function createViewFromString(Factory $factory, string $contents): string
     {
@@ -110,7 +108,7 @@ class BladeComponent extends Tags
             $directory = Container::getInstance()['config']->get('view.compiled')
         );
 
-        if (!file_exists($viewFile = $directory . '/' . sha1($contents) . '.php')) {
+        if (!file_exists($viewFile = $directory.'/'.sha1($contents).'.php')) {
             if (!is_dir($directory)) {
                 mkdir($directory, 0755, true);
             }
@@ -118,7 +116,6 @@ class BladeComponent extends Tags
             file_put_contents($viewFile, $contents);
         }
 
-        return '__components::' . basename($viewFile, '.php');
+        return '__components::'.basename($viewFile, '.php');
     }
-
 }
