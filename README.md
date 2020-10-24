@@ -1,7 +1,7 @@
 # Statamic Blade Components
 
-![Statami v3](https://img.shields.io/badge/Statamic-3.0+-FF269E)
-![Packagist](https://img.shields.io/packagist/v/octoper/statamic-blade-components)
+[![Statami v3](https://img.shields.io/badge/Statamic-3.0+-FF269E)](https://statamic.com/addons/octoper/blade-components)
+[![Packagist](https://img.shields.io/packagist/v/octoper/statamic-blade-components)](https://packagist.org/packages/octoper/statamic-blade-components)
 ![Test Suite](https://github.com/octoper/statamic-blade-components/workflows/Test%20Suite/badge.svg)
 
 A [Laravel Blade Components](https://laravel.com/docs/7.x/blade#components) integration for Statamics Antlers template engine. 
