@@ -46,4 +46,4 @@ If you discover any security related issues, please email me@octoper.me instead 
 - [All Contributors](../../contributors)
 
 # License 
-This plugin is published under the MIT license. Feel free to use it and remember to spread love.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
