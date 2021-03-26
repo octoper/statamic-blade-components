@@ -6,9 +6,9 @@ namespace Octoper\BladeComponents\Tags;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 use Octoper\BladeComponents\BladeCompiler;
 use Statamic\Tags\Tags;
-use Illuminate\Support\Facades\View;
 
 class BladeComponent extends Tags
 {
@@ -19,14 +19,14 @@ class BladeComponent extends Tags
 
     /** @var array<string> */
     protected static $aliases = [
-		'x'
-	];
+        'x',
+    ];
 
     /**
-     * Renders given component to Laravel Blade components
+     * Renders given component to Laravel Blade components.
      *
      * @param  string $component
-	 *
+     *
      * @return string
      */
     public function wildcard(string $component): string
@@ -42,17 +42,17 @@ class BladeComponent extends Tags
         return View::make($this->createViewFromString($factory, $compiledBladeView))->render();
     }
 
-	/**
-	 * Creates a slot Laravel Blade component.
-	 *
-	 * @return string
-	 */
-	public function slot(): string
-	{
-		if (!isset($this->params['name']) || empty($this->params['name'])) {
-			return '';
-		}
+    /**
+     * Creates a slot Laravel Blade component.
+     *
+     * @return string
+     */
+    public function slot(): string
+    {
+        if (! isset($this->params['name']) || empty($this->params['name'])) {
+            return '';
+        }
 
-		return "<x-slot {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-slot>";
-	}
+        return "<x-slot {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-slot>";
+    }
 }

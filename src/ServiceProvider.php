@@ -7,7 +7,7 @@ use Statamic\Providers\AddonServiceProvider;
 
 class ServiceProvider extends AddonServiceProvider
 {
-	/** @var array<mixed> */
+    /** @var array<mixed> */
     protected $tags = [
         BladeComponent::class,
     ];
