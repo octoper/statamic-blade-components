@@ -2,8 +2,8 @@
 
 [![Statami v3](https://img.shields.io/badge/Statamic-3.0+-FF269E)](https://statamic.com/addons/octoper/blade-components)
 [![Packagist](https://img.shields.io/packagist/v/octoper/statamic-blade-components)](https://packagist.org/packages/octoper/statamic-blade-components)
-[![Tests](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml/badge.svg?branch=1.0)](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml)
-[![StyleCI](https://github.styleci.io/repos/290389800/shield?branch=1.0)](https://github.styleci.io/repos/290389800?branch=1.0)
+[![Tests](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml/badge.svg)](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml)
+[![StyleCI](https://github.styleci.io/repos/290389800/shield)](https://github.styleci.io/repos/290389800)
 
 A [Laravel Blade Components](https://laravel.com/docs/8.x/blade#components) integration for Statamics Antlers template engine.
 
