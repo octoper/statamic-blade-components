@@ -3,11 +3,11 @@
 namespace Octoper\BladeComponents\Tests;
 
 use Octoper\BladeComponents\ServiceProvider as BladeComponentsServiceProvider;
+use Octoper\BladeComponents\Tests\Components\TestServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Statamic\Extend\Manifest;
 use Statamic\Providers\StatamicServiceProvider;
 use Statamic\Statamic;
-use Octoper\BladeComponents\Tests\Components\TestServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -35,7 +35,7 @@ abstract class TestCase extends OrchestraTestCase
             'statamic-blade-components' => [
                 'id'        => 'octoper/statamic-blade-components',
                 'namespace' => 'Octoper\\BladeComponents',
-            ]
+            ],
         ];
     }
 
@@ -53,6 +53,5 @@ abstract class TestCase extends OrchestraTestCase
         }
 
         $app['config']->set('statamic.users.repository', 'file');
-
     }
 }

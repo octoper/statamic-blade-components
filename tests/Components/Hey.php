@@ -4,9 +4,8 @@ namespace Octoper\BladeComponents\Tests\Components;
 
 use Illuminate\View\Component;
 
-
-class Hey extends Component {
-
+class Hey extends Component
+{
     public ?string $name;
 
     public function __construct($name = '')

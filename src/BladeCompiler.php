@@ -15,9 +15,9 @@ trait BladeCompiler
     /**
      * Get the component class for a given component alias.
      *
-     * @return string
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     public function componentClass(string $component)
     {
@@ -65,7 +65,7 @@ trait BladeCompiler
             return;
         }
 
-        if (class_exists($class = $this->namespaces[$prefix] . '\\' . $this->formatClassName($segments[1]))) {
+        if (class_exists($class = $this->namespaces[$prefix].'\\'.$this->formatClassName($segments[1]))) {
             return $class;
         }
     }
@@ -83,7 +83,7 @@ trait BladeCompiler
 
         $class = $this->formatClassName($component);
 
-        return $namespace . 'View\\Components\\' . $class;
+        return $namespace.'View\\Components\\'.$class;
     }
 
     /**
@@ -114,10 +114,10 @@ trait BladeCompiler
         $delimiter = ViewFinderInterface::HINT_PATH_DELIMITER;
 
         if (Str::contains($name, $delimiter)) {
-            return Str::replaceFirst($delimiter, $delimiter . $prefix, $name);
+            return Str::replaceFirst($delimiter, $delimiter.$prefix, $name);
         }
 
-        return $prefix . $name;
+        return $prefix.$name;
     }
 
     /**
@@ -142,7 +142,7 @@ trait BladeCompiler
             $directory = Container::getInstance()['config']->get('view.compiled')
         );
 
-        if (!file_exists($viewFile = $directory . '/' . sha1($contents) . '.php')) {
+        if (!file_exists($viewFile = $directory.'/'.sha1($contents).'.php')) {
             if (!is_dir($directory)) {
                 mkdir($directory, 0755, true);
             }
@@ -150,6 +150,6 @@ trait BladeCompiler
             file_put_contents($viewFile, $contents);
         }
 
-        return '__components::' . basename($viewFile, '.php');
+        return '__components::'.basename($viewFile, '.php');
     }
 }
