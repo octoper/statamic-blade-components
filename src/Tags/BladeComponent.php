@@ -18,7 +18,9 @@ class BladeComponent extends Tags
     protected static $handle = 'component';
 
     /** @var array<string> */
-    protected static $aliases = ['x'];
+    protected static $aliases = [
+		'x'
+	];
 
     /**
      * Renders given component to Laravel Blade components
