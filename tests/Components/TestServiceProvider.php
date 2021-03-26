@@ -2,9 +2,9 @@
 
 namespace Octoper\BladeComponents\Tests\Components;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\Support\Facades\Blade;
 
 class TestServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class TestServiceProvider extends ServiceProvider
         $this->callAfterResolving(BladeCompiler::class, function () {
             Blade::component(Hey::class);
             Blade::component(Section::class);
-			Blade::component(Card::class);
+            Blade::component(Card::class);
         });
     }
 }

@@ -11,24 +11,24 @@ use Statamic\Tags\Tags;
 
 class BladeComponent extends Tags
 {
-	use BladeCompiler;
+    use BladeCompiler;
 
-	/* @var string */
-	protected static $handle = 'component';
+    /* @var string */
+    protected static $handle = 'component';
 
-	/* @var array */
-	protected static $aliases = ['x'];
+    /* @var array */
+    protected static $aliases = ['x'];
 
-	public function wildcard(string $expression): string
-	{
-		$compiledBladeView = Blade::compileString(
-			<<<EOT
+    public function wildcard(string $expression): string
+    {
+        $compiledBladeView = Blade::compileString(
+            <<<EOT
 			<x-{$expression} {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-{$expression}>
 			EOT
-		);
+        );
 
-		$factory = Container::getInstance()->make('view');
+        $factory = Container::getInstance()->make('view');
 
-		return view($this->createViewFromString($factory, $compiledBladeView))->render();
-	}
+        return view($this->createViewFromString($factory, $compiledBladeView))->render();
+    }
 }
