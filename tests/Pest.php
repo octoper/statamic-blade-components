@@ -13,7 +13,7 @@
 
 use Statamic\Facades\Antlers;
 
-expect()->extend('toBeRendered', function ($expected) {
+expect()->extend('toBeRenderedAs', function ($expected) {
     return $this->toEqual($expected);
 });
 

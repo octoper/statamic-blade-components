@@ -7,7 +7,7 @@ uses(TestCase::class);
 test('simple hey component', function () {
     $component = renderAntler('{{ component:hey }}');
 
-    expect($component)->toBeRendered(
+    expect($component)->toBeRenderedAs(
         <<<'EOF'
 		<div>Hey</div>
 		EOF
@@ -17,7 +17,7 @@ test('simple hey component', function () {
 test('simple hey component with name attribute', function () {
     $component = renderAntler('{{ component:hey name="Nick" }}');
 
-    expect($component)->toBeRendered(
+    expect($component)->toBeRenderedAs(
         <<<'EOF'
 		<div>Hey Nick</div>
 		EOF
@@ -33,7 +33,7 @@ test('section component with default slot', function () {
 		EOF
     );
 
-    expect($component)->toBeRendered(
+    expect($component)->toBeRenderedAs(
         <<<'EOF'
 			<div>
 				<h1>Main</h1>
@@ -55,7 +55,7 @@ test('section component with default slot and a Statamic variable', function () 
         ]
     );
 
-    expect($component)->toBeRendered(
+    expect($component)->toBeRenderedAs(
         <<<'EOF'
 			<div>
 				<h1>Main</h1>
@@ -78,7 +78,7 @@ test('card component with title slot', function () {
 		EOF
     );
 
-    expect($component)->toBeRendered(
+    expect($component)->toBeRenderedAs(
         <<<'EOF'
 			<div class="card">
 				<h1>Hey</h1>

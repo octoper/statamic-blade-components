@@ -8,15 +8,16 @@ use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Blade;
 use Octoper\BladeComponents\BladeCompiler;
 use Statamic\Tags\Tags;
+use Illuminate\Support\Facades\View;
 
 class BladeComponent extends Tags
 {
     use BladeCompiler;
 
-    /* @var string */
+    /** @var string */
     protected static $handle = 'component';
 
-    /* @var array */
+    /** @var array<string> */
     protected static $aliases = ['x'];
 
     /**
@@ -36,11 +37,11 @@ class BladeComponent extends Tags
 
         $factory = Container::getInstance()->make('view');
 
-        return view($this->createViewFromString($factory, $compiledBladeView))->render();
+        return View::make($this->createViewFromString($factory, $compiledBladeView))->render();
     }
 
 	/**
-	 * Creates an x-slot Laravel Blade component.
+	 * Creates a slot Laravel Blade component.
 	 *
 	 * @return string
 	 */
