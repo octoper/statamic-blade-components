@@ -8,7 +8,7 @@
 A [Laravel Blade Components](https://laravel.com/docs/8.x/blade#components) integration for Statamics Antlers template engine.
 
 ## Installation
-Pull in your package with composer
+You can install the package via composer:
 ```bash
 composer require octoper/statamic-blade-components
 ```
@@ -45,6 +45,12 @@ or even named slots
 		Email
 	{{ /component:slot}}
 {{ /component }}
+```
+
+## Testing
+
+``` bash
+composer test
 ```
 
 ## Security
