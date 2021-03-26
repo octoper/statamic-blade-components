@@ -61,7 +61,7 @@ trait BladeCompiler
 
         $prefix = $segments[0];
 
-        if (!isset($this->namespaces[$prefix]) || !isset($segments[1])) {
+        if (! isset($this->namespaces[$prefix]) || ! isset($segments[1])) {
             return;
         }
 
@@ -142,8 +142,8 @@ trait BladeCompiler
             $directory = Container::getInstance()['config']->get('view.compiled')
         );
 
-        if (!file_exists($viewFile = $directory.'/'.sha1($contents).'.php')) {
-            if (!is_dir($directory)) {
+        if (! file_exists($viewFile = $directory.'/'.sha1($contents).'.php')) {
+            if (! is_dir($directory)) {
                 mkdir($directory, 0755, true);
             }
 
