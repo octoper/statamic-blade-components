@@ -13,8 +13,8 @@ trait BladeCompiler
     /**
      * Creates attributes tags.
      *
-	 * @param array<mixed> $attributes
-	 *
+     * @param array<mixed> $attributes
+     *
      * @return string
      */
     protected function createAttributes(array $attributes)
@@ -25,9 +25,9 @@ trait BladeCompiler
     /**
      * Created a view based on a string.
      *
-	 * @param \Illuminate\Contracts\View\Factory $factory
-	 * @param string $contents
-	 *
+     * @param \Illuminate\Contracts\View\Factory $factory
+     * @param string $contents
+     *
      * @return string
      */
     protected function createViewFromString(Factory $factory, string $contents)
