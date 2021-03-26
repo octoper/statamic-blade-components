@@ -9,33 +9,23 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         php: ['7.4', '8.0']
-        dependency-version: [prefer-lowest, prefer-stable]
 
-    name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }} - ${{ matrix.os }}
 
     steps:
     - name: Checkout
       uses: actions/checkout@v2
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php }}
-        tools: composer:v2
-        coverage: none
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip
+          tools: composer:v2
+          coverage: none
 
-    - name: Setup Problem Matches
-      run: |
-        echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-        echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-    - name: Install PHP 7 dependencies
-      run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress
-      if: "matrix.php < 8"
-
-    - name: Install PHP 8 dependencies
-      run: composer update --${{ matrix.dependency-version }} --ignore-platform-req=php --no-interaction --no-progress
-      if: "matrix.php >= 8"
+    - name: Install PHP dependencies
+      run: composer update --prefer-dist --no-interaction --no-progress
 
     - name: Tests
       run: php vendor/bin/pest --colors=always
