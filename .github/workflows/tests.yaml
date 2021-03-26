@@ -3,14 +3,14 @@ name: Tests
 on: ['push', 'pull_request']
 
 jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
+  tests:
+    runs-on: ubuntu-20.04
     strategy:
+		fail-fast: true
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
         php: ['7.4', '8.0']
 
-    name: PHP ${{ matrix.php }} - ${{ matrix.os }}
+    name: PHP ${{ matrix.php }}
 
     steps:
     - name: Checkout
