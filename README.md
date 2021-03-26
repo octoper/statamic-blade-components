@@ -5,7 +5,7 @@
 [![Tests](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml/badge.svg?branch=1.0)](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml)
 [![StyleCI](https://github.styleci.io/repos/290389800/shield?branch=1.0)](https://github.styleci.io/repos/290389800?branch=1.0)
 
-A [Laravel Blade Components](https://laravel.com/docs/7.x/blade#components) integration for Statamics Antlers template engine.
+A [Laravel Blade Components](https://laravel.com/docs/8.x/blade#components) integration for Statamics Antlers template engine.
 
 ## Installation
 Pull in your package with composer
@@ -14,7 +14,7 @@ composer require octoper/statamic-blade-components
 ```
 
 ## General documentation
-[Laravel Blade Components](https://laravel.com/docs/7.x/blade#components)
+[Laravel Blade Components](https://laravel.com/docs/8.x/blade#components)
 
 ## How to be used with the Antlers template engine
 ```html
@@ -33,7 +33,17 @@ You can pass additional content to your component via "slots" too.
 
 ```html
 {{ component:label for="email" }}
-Email
+	Email
+{{ /component }}
+```
+
+or even named slots
+
+```html
+{{ component:label for="email" }}
+	{{ component:slot name="title" }}
+		Email
+	{{ /component:slot}}
 {{ /component }}
 ```
 
