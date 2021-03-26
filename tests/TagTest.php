@@ -69,9 +69,9 @@ test('card component with title slot', function () {
     $component = renderAntler(
         <<<'EOF'
 			{{ component:card }}
-				<x-slot name="title">
+				{{ component:slot name="title" }}
 					Hey
-				</x-slot>
+				{{ /component:slot }}
 
 				Hello
 			{{ /component:card }}

@@ -15,6 +15,8 @@ trait BladeCompiler
     /**
      * Get the component class for a given component alias.
      *
+	 * @param string $component
+	 *
      * @throws \InvalidArgumentException
      *
      * @return string
@@ -53,6 +55,8 @@ trait BladeCompiler
     /**
      * Find the class for the given component using the registered namespaces.
      *
+	 * @param string $component
+	 *
      * @return string|null
      */
     public function findClassByComponent(string $component)
@@ -73,6 +77,8 @@ trait BladeCompiler
     /**
      * Guess the class name for the given component.
      *
+	 * @param string $component
+	 *
      * @return string
      */
     public function guessClassName(string $component)
@@ -89,6 +95,8 @@ trait BladeCompiler
     /**
      * Format the class name for the given component.
      *
+	 * @param string $component
+	 *
      * @return string
      */
     public function formatClassName(string $component)
@@ -123,6 +131,8 @@ trait BladeCompiler
     /**
      * Creates attributes tags.
      *
+	 * @param array $attributes
+	 *
      * @return string
      */
     protected function createAttributes(array $attributes)
@@ -133,6 +143,9 @@ trait BladeCompiler
     /**
      * Created a view based on a string.
      *
+	 * @param \Illuminate\Contracts\View\Factory $factory
+	 * @param string $contents
+	 *
      * @return string
      */
     protected function createViewFromString(Factory $factory, string $contents)

@@ -19,11 +19,18 @@ class BladeComponent extends Tags
     /* @var array */
     protected static $aliases = ['x'];
 
-    public function wildcard(string $expression): string
+    /**
+     * Renders given component to Laravel Blade components
+     *
+     * @param  string $component
+	 *
+     * @return string
+     */
+    public function wildcard(string $component): string
     {
         $compiledBladeView = Blade::compileString(
             <<<EOT
-			<x-{$expression} {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-{$expression}>
+			<x-dynamic-component component="{$component}" {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-dynamic-component>
 			EOT
         );
 
@@ -31,4 +38,18 @@ class BladeComponent extends Tags
 
         return view($this->createViewFromString($factory, $compiledBladeView))->render();
     }
+
+	/**
+	 * Creates an x-slot Laravel Blade component.
+	 *
+	 * @return string
+	 */
+	public function slot(): string
+	{
+		if (!isset($this->params['name']) || empty($this->params['name'])) {
+			return '';
+		}
+
+		return "<x-slot {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-slot>";
+	}
 }
