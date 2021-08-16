@@ -1,3 +1,4 @@
+<!-- statamic:hide -->
 # Statamic Blade Components
 
 [![Statami v3](https://img.shields.io/badge/Statamic-3.0+-FF269E)](https://statamic.com/addons/octoper/blade-components)
@@ -6,6 +7,7 @@
 [![StyleCI](https://github.styleci.io/repos/290389800/shield?branch=main)](https://github.styleci.io/repos/290389800?branch=main)
 
 A [Laravel Blade Components](https://laravel.com/docs/8.x/blade#components) integration for Statamics Antlers template engine.
+<!-- /statamic:hide -->
 
 ## Installation
 You can install the package via composer:
@@ -62,5 +64,7 @@ If you discover any security related issues, please email me@octoper.me instead 
 - [Vaggelis Yfantis](https://github.com/octoper)
 - [All Contributors](../../contributors)
 
-# License
+<!-- statamic:hide -->
+## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+<!-- /statamic:hide -->
