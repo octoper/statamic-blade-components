@@ -36,7 +36,7 @@ You can pass additional content to your component via "slots" too.
 ```html
 {{ component:label for="email" }}
 	Email
-{{ /component }}
+{{ /component:label }}
 ```
 
 or even named slots
@@ -46,7 +46,7 @@ or even named slots
 	{{ component:slot name="title" }}
 		Email
 	{{ /component:slot}}
-{{ /component }}
+{{ /component:label }}
 ```
 
 ## Testing
