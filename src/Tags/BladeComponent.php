@@ -24,7 +24,6 @@ class BladeComponent extends Tags
      * Renders given component to Laravel Blade components.
      *
      * @param  string  $component
-     *
      * @return string
      */
     public function wildcard(string $component): string
