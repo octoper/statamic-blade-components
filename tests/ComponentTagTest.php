@@ -24,10 +24,39 @@ test('simple hey component with name attribute', function () {
     );
 });
 
+test('simple hey component with dynamic name attribute', function () {
+    $component = renderAntler('{{ component:hey :name="\'Joe\'" }}');
+
+    expect($component)->toBeRenderedAs(
+        <<<'EOF'
+		<div>Hey Joe</div>
+		EOF
+    );
+});
+
 test('section component with default slot', function () {
     $component = renderAntler(
         <<<'EOF'
 			{{ component:section name="Main" }}
+				Main Section
+			{{ /component:section }}
+		EOF
+    );
+
+    expect($component)->toBeRenderedAs(
+        <<<'EOF'
+			<div>
+				<h1>Main</h1>
+				<div>Main Section</div>
+			</div>
+		EOF
+    );
+});
+
+test('section component with default slot and dynamic name attribute', function () {
+    $component = renderAntler(
+        <<<'EOF'
+			{{ component:section :name="\'Main\'" }}
 				Main Section
 			{{ /component:section }}
 		EOF

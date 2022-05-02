@@ -31,7 +31,7 @@ class BladeComponent extends Tags
     {
         $compiledBladeView = Blade::compileString(
             <<<EOT
-			<x-dynamic-component component="{$component}" {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-dynamic-component>
+			<x-dynamic-component component="{$component}" {$this->createDynamicAttributes()}>{$this->parse()}</x-dynamic-component>
 			EOT
         );
 
@@ -51,6 +51,19 @@ class BladeComponent extends Tags
             return '';
         }
 
-        return "<x-slot {$this->createAttributes($this->params->toArray())}>{$this->parse()}</x-slot>";
+        return "<x-slot {$this->createDynamicAttributes()}>{$this->parse()}</x-slot>";
+    }
+
+    private function createDynamicAttributes(): string
+    {
+        $params = $this->params->mapWithKeys(function ($item, $key) {
+            if (is_string($item)) {
+                return [$key => $item];
+            }
+
+            return [':' . $key => var_export($item, true)];
+        })->toArray();
+
+        return $this->createAttributes($params);
     }
 }
