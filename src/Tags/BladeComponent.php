@@ -23,7 +23,7 @@ class BladeComponent extends Tags
     /**
      * Renders given component to Laravel Blade components.
      *
-     * @param  string $component
+     * @param  string  $component
      *
      * @return string
      */
@@ -61,7 +61,7 @@ class BladeComponent extends Tags
                 return [$key => $item];
             }
 
-            return [':' . $key => var_export($item, true)];
+            return [':'.$key => var_export($item, true)];
         })->toArray();
 
         return $this->createAttributes($params);
