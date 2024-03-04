@@ -16,9 +16,9 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^8.0 || ^9.0",
-        "illuminate/view": "^8.0 || ^9.0",
-        "statamic/cms": "^3.3"
+        "illuminate/support": "^8.0 || ^9.0 || ^10.0",
+        "illuminate/view": "^8.0 || ^9.0 || ^10.0",
+        "statamic/cms": "^3.3 || ^4.0"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.2",
@@ -48,7 +48,7 @@
             "@php vendor/bin/testbench package:discover --ansi"
         ],
         "test:types": "./vendor/bin/phpstan analyse --ansi --memory-limit=0",
-        "test": "./vendor/bin/pestphp"
+        "test": "./vendor/bin/pest"
     },
     "extra": {
         "statamic": {

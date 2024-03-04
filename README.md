@@ -6,7 +6,7 @@
 [![Tests](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml/badge.svg)](https://github.com/octoper/statamic-blade-components/actions/workflows/tests.yaml)
 [![StyleCI](https://github.styleci.io/repos/290389800/shield?branch=main)](https://github.styleci.io/repos/290389800?branch=main)
 
-A [Laravel Blade Components](https://laravel.com/docs/8.x/blade#components) integration for Statamics Antlers template engine.
+A [Laravel Blade Components](https://laravel.com/docs/10.x/blade#components) integration for Statamics Antlers template engine.
 <!-- /statamic:hide -->
 
 ## Installation
@@ -16,7 +16,7 @@ composer require octoper/statamic-blade-components
 ```
 
 ## General documentation
-[Laravel Blade Components](https://laravel.com/docs/8.x/blade#components)
+[Laravel Blade Components](https://laravel.com/docs/10.x/blade#components)
 
 ## How to be used with the Antlers template engine
 ```html
